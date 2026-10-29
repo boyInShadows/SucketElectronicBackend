@@ -1,213 +1,50 @@
-# Sucket Electronic - Backend API
+# Sucket Electronic API — سوکت الکترونیک
 
-A Django REST API backend for the Sucket Electronic e-commerce platform. This backend provides a comprehensive API for managing products, users, orders, and content management.
+The Django REST API for the **سوکت الکترونیک** client project, covering an automotive-connector catalog and account/cart/order code. The [Next.js frontend](https://github.com/boyInShadows/sucketElectronic) is maintained in its own repository; this checkout does not contain its user interface.
 
-## 🚀 Features
+**Status:** existing client backend with a verified local catalog connection. A live deployment, SMS delivery, real payments and complete checkout were not verified in this pass. Client-project involvement is confirmed; sole authorship of both repositories is not claimed.
 
-- **User Management**: Custom user model with authentication and authorization
-- **Product Management**: Categories, products with Persian slug support
-- **Shopping Cart**: Full cart functionality with items management
-- **Order Management**: Complete order processing with status tracking
-- **Content Management**: Articles and contact messages
-- **RESTful API**: Comprehensive API endpoints using Django REST Framework
-- **CORS Support**: Cross-origin resource sharing enabled
-- **Media Management**: File uploads for products and articles
+## Run locally
 
-## 🛠️ Tech Stack
+Use **Python >=3.10** for the pinned Django 5.2.4 requirements. Verification used Python 3.13.16 in an isolated environment.
 
-- **Django 5.2**: Web framework
-- **Django REST Framework**: API development
-- **SQLite**: Database (development)
-- **CORS Headers**: Cross-origin support
-- **Pillow**: Image processing
-
-## 📋 Prerequisites
-
-- Python 3.8+
-- pip (Python package installer)
-- Virtual environment (recommended)
-
-## 🔧 Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd SucketElectronic/backend
-   ```
-
-2. **Create and activate virtual environment**
-   ```bash
-   # Windows
-   python -m venv venv
-   venv\Scripts\activate
-
-   # macOS/Linux
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install django
-   pip install djangorestframework
-   pip install django-cors-headers
-   pip install Pillow
-   ```
-
-4. **Run migrations**
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
-
-5. **Create superuser**
-   ```bash
-   python manage.py createsuperuser
-   ```
-
-6. **Run the development server**
-   ```bash
-   python manage.py runserver
-   ```
-
-The API will be available at `http://localhost:8000/`
-
-## 📚 API Endpoints
-
-### Authentication
-- `POST /api/auth/register/` - User registration
-- `POST /api/auth/login/` - User login
-- `POST /api/auth/logout/` - User logout
-
-### Users
-- `GET /api/users/` - List users (admin only)
-- `GET /api/users/{id}/` - Get user details
-- `PUT /api/users/{id}/` - Update user
-- `DELETE /api/users/{id}/` - Delete user
-
-### Categories
-- `GET /api/categories/` - List categories
-- `POST /api/categories/` - Create category (admin only)
-- `GET /api/categories/{id}/` - Get category details
-- `PUT /api/categories/{id}/` - Update category
-- `DELETE /api/categories/{id}/` - Delete category
-
-### Products
-- `GET /api/products/` - List products
-- `POST /api/products/` - Create product (admin only)
-- `GET /api/products/{id}/` - Get product details
-- `PUT /api/products/{id}/` - Update product
-- `DELETE /api/products/{id}/` - Delete product
-
-### Cart
-- `GET /api/cart/` - Get user's cart
-- `POST /api/cart/` - Create cart
-- `GET /api/cart/items/` - List cart items
-- `POST /api/cart/items/` - Add item to cart
-- `PUT /api/cart/items/{id}/` - Update cart item
-- `DELETE /api/cart/items/{id}/` - Remove item from cart
-
-### Orders
-- `GET /api/orders/` - List user's orders
-- `POST /api/orders/` - Create order
-- `GET /api/orders/{id}/` - Get order details
-- `PUT /api/orders/{id}/` - Update order status
-
-### Articles
-- `GET /api/articles/` - List articles
-- `POST /api/articles/` - Create article (admin only)
-- `GET /api/articles/{id}/` - Get article details
-- `PUT /api/articles/{id}/` - Update article
-- `DELETE /api/articles/{id}/` - Delete article
-
-### Messages
-- `GET /api/messages/` - List contact messages (admin only)
-- `POST /api/messages/` - Send contact message
-- `GET /api/messages/{id}/` - Get message details
-
-## 🗄️ Database Models
-
-### User
-- Custom user model extending AbstractUser
-- Phone number field
-- Admin role management
-
-### Category
-- Name, description, and slug
-- Persian slug support for SEO
-
-### Product
-- Name, description, price, category
-- Image URL support
-- Timestamps
-
-### Cart & CartItem
-- User-specific shopping cart
-- Product quantity management
-
-### Order & OrderItem
-- Order status tracking
-- Total price calculation
-- Shipping address
-
-### Article
-- Content management for blog/articles
-- Image upload support
-
-### Message
-- Contact form submissions
-- Email and message content
-
-## 🔐 Authentication
-
-The API uses Django's built-in authentication system with custom user model. JWT tokens or session-based authentication can be implemented as needed.
-
-## 🌐 CORS Configuration
-
-CORS is configured to allow cross-origin requests from the frontend application. Update `ALLOWED_HOSTS` and `CORS_ALLOWED_ORIGINS` in settings.py for production.
-
-## 📁 Project Structure
-
-```
-backend/
-├── config/                 # Django settings and configuration
-│   ├── settings.py        # Main settings file
-│   ├── urls.py           # Root URL configuration
-│   └── wsgi.py           # WSGI configuration
-├── ecommerce/            # Main app
-│   ├── models.py         # Database models
-│   ├── views.py          # API views
-│   ├── serializers.py    # DRF serializers
-│   └── urls.py           # App URL patterns
-├── products/             # Products app
-├── media/               # Uploaded files
-├── manage.py            # Django management script
-└── db.sqlite3           # SQLite database
+```bash
+git clone https://github.com/boyInShadows/SucketElectronicBackend.git
+cd SucketElectronicBackend
+python -m venv .venv
 ```
 
-## 🚀 Deployment
+Activate `.venv` using `.venv\Scripts\Activate.ps1` on Windows or `source .venv/bin/activate` on a POSIX shell, then install the actual dependency file:
 
-For production deployment:
+```bash
+python -m pip install -r requirements.txt
+```
 
-1. Set `DEBUG = False` in settings.py
-2. Configure a production database (PostgreSQL recommended)
-3. Set up static file serving
-4. Configure environment variables for sensitive data
-5. Set up proper CORS origins
-6. Use a production WSGI server (Gunicorn)
+Supply **`DJANGO_SECRET_KEY` with at least 32 characters** through the process environment before running Django. Real credentials on the maintainer's Windows workstation belong in Windows user environment variables. The old source-embedded key has been removed from active settings; do not reuse it from Git history.
 
-## 🤝 Contributing
+```bash
+python manage.py check
+python manage.py migrate
+python manage.py test
+python manage.py runserver
+```
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+Open `http://localhost:8000/api/products/` or `/api/categories/`. Use a fresh local database; preserve existing customer data and uploads. Apply checked-in migrations rather than running `makemigrations` as an installation step. The [public setup guide](docs/README.md) covers origins, admin access, configuration and deployment limits.
 
-## 📄 License
+## API and frontend connection
 
-This project is part of the Sucket Electronic e-commerce platform.
+The catalog uses Django REST Framework; its active protected-request configuration uses **SimpleJWT bearer tokens**, rather than the previous README's unqualified session-auth claim. The inspected catalog permits public reads and checks admin access for writes. Account, cart and order viewsets exist, but their complete behavior is not established by the catalog tests.
 
-## 🔗 Frontend Integration
+For local frontend review, start the separate Next.js app with `NEXT_PUBLIC_API_URL=http://localhost:8000` and `INTERNAL_API_URL=http://localhost:8000`. Browser origins, trailing-slash API routes and image URLs must match its configuration. A real Next-to-Django product request returned HTTP 200 against four synthetic records. [Actual frontend captures](https://github.com/boyInShadows/sucketElectronic/tree/main/docs/artifacts) show that local pair.
 
-This backend is designed to work with the Next.js frontend application. The frontend repository contains the complete user interface and connects to these API endpoints. 
+## Checks and known limits
+
+The original `ecommerce/tests.py` was a scaffold, and initial discovery ran zero tests. This change adds **four passing tests** for public catalog reads, invalid filtering, denied anonymous writes and rejection of a missing signing key. The key regression failed on the original source default and passed after runtime-key validation. [Recorded results](docs/artifacts/verification.json) distinguish this bounded coverage from a full application suite.
+
+Django checks still report `urls.W005` for duplicate admin namespaces. The settings remain development-oriented, including DEBUG and broad CORS behavior; they are not production-ready simply because the catalog runs. No real Twilio/SMS/payment service was configured or contacted, and Python dependency vulnerability scanning was not performed. See [configuration and release limits](docs/README.md#configuration-and-release-limits).
+
+## Persian overview
+
+این مخزن API پروژه مشتری «سوکت الکترونیک» است و رابط کاربری Next.js در مخزن جداگانه قرار دارد. ارتباط محلی فهرست محصولات با داده آزمایشی بررسی شده است. برای اجرای نسخه جدید باید کلید امضای مستقل را از متغیر محیطی تأمین کرد؛ تست‌های این بررسی به معنی تأیید پرداخت واقعی یا آماده‌بودن تنظیمات برای محیط تولید نیستند.
+
+This project remains part of the Sucket Electronic platform. Existing ownership and asset credits remain applicable; no new license or unsupported sole-authorship claim is introduced.

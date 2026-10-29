@@ -1,0 +1,19 @@
+{
+  "runtime": "Python3.13.16,Django5.2.4; exact requirements installed",
+  "results": [
+    {
+      "command": "python manage.py check",
+      "exit_code": 0,
+      "output": "System check identified some issues:\n\nWARNINGS:\n?: (urls.W005) URL namespace 'admin' isn't unique. You may not be able to reverse all URLs in this namespace\n\nSystem check identified 1 issue (0 silenced).\n"
+    },
+    {
+      "command": "python manage.py test --verbosity 1",
+      "exit_code": 0,
+      "output": "Found 4 test(s).\nFiltering products with category_id: None\nFiltering categories by slug: review-connectors\nFound 1 categories\nFiltering products with category_id: invalid\nError converting category_id: invalid literal for int() with base 10: 'invalid'\nCreating test database for alias 'default'...\n\nSystem check identified some issues:\n\nWARNINGS:\n?: (urls.W005) URL namespace 'admin' isn't unique. You may not be able to reverse all URLs in this namespace\n\nSystem check identified 1 issue (0 silenced).\n....\n----------------------------------------------------------------------\nRan 4 tests in 0.173s\n\nOK\nDestroying test database for alias 'default'...\n\n"
+    }
+  ],
+  "limits": [
+    "Django urls.W005 duplicate admin namespace warning remains.",
+    "No real SMS/payment service tested; original databases untouched."
+  ]
+}

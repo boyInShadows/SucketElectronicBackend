@@ -1,0 +1,7 @@
+{
+  "command": "Django Client GET with fresh runtime signing key and isolated synthetic SQLite fixture",
+  "exit_code": 0,
+  "output": "Filtering products with category_id: None\n/api/products/ 200 4\n/api/categories/ 200 1\n",
+  "signing_key_source_consistent": true,
+  "original_data_untouched": true
+}
