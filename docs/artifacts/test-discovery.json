@@ -1,0 +1,6 @@
+{
+  "command": "python manage.py test --verbosity 1",
+  "exit_code": 0,
+  "output": "Found 0 test(s).\nSystem check identified some issues:\n\nWARNINGS:\n?: (urls.W005) URL namespace 'admin' isn't unique. You may not be able to reverse all URLs in this namespace\n\nSystem check identified 1 issue (0 silenced).\n\n----------------------------------------------------------------------\nRan 0 tests in 0.000s\n\nNO TESTS RAN\n",
+  "interpretation": "Zero discovered tests is not a passing application regression suite."
+}
