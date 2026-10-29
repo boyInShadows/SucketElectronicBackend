@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-yr_%li*t23nv^l03%pmf6oyye7+39e2niedjd3(#pnzhxrl(7d"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "")
+if len(SECRET_KEY) < 32:
+    raise ImproperlyConfigured("DJANGO_SECRET_KEY must contain at least 32 characters")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
