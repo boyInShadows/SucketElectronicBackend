@@ -2,7 +2,9 @@
 
 The Django REST API for the **سوکت الکترونیک** client project, covering an automotive-connector catalog and account/cart/order code. The [Next.js frontend](https://github.com/boyInShadows/sucketElectronic) is maintained in its own repository; this checkout does not contain its user interface.
 
-**Status:** existing client backend with a verified local catalog connection. A live deployment, SMS delivery, real payments and complete checkout were not verified in this pass. Client-project involvement is confirmed; sole authorship of both repositories is not claimed.
+**Status:** existing client backend with a verified local catalog connection. A live deployment, SMS delivery, real payments and complete checkout were not verified in this pass.
+
+**Ramtin Farzane's contribution:** development of both the backend and frontend, confirmed by Ramtin.
 
 ## Run locally
 
