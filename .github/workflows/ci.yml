@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  django:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pip check
+      - name: Check and test with an ephemeral signing key
+        run: |
+          python - <<'PY'
+          import os
+          import secrets
+          import subprocess
+          import sys
+          environment = {**os.environ, "DJANGO_SECRET_KEY": secrets.token_hex(32)}
+          for command in (["manage.py", "check"], ["manage.py", "test", "--verbosity", "1"]):
+              subprocess.run([sys.executable, *command], env=environment, check=True)
+          PY
